@@ -1,480 +1,308 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
-
+<html lang="es" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marckbyn Rodríguez Vélez | Ingeniero de Montes y Especialista GIS</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #0a192f;
-            color: #ccd6f6;
-        }
-        
-        /* Nuevo estilo para la transición del fondo */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-image: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.9)), url('assets/background.jpg');
-            background-size: cover;
-            background-position: center;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-        }
-
-        body.loaded::before {
-            opacity: 1;
-        }
-
-        .glass-effect {
-            background: rgba(13, 30, 55, 0.6);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .accent-color { color: #64ffda; }
-        .accent-bg { background-color: #64ffda; }
-        .accent-border { border-color: #64ffda; }
-
-        .section-title::before {
-            content: '';
-            display: block;
-            position: relative;
-            top: 50%;
-            width: 50px;
-            height: 1px;
-            margin-right: 20px;
-            background-color: #233554;
-        }
-
-        .project-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 30px -15px rgba(2, 12, 27, 0.7);
-        }
-
-        .reveal {
-            position: relative;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 1s ease;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .typed-cursor {
-            opacity: 1;
-            animation: blink 0.7s infinite;
-        }
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marckbyn Rodríguez Vélez · Ingeniero de Montes y Especialista SIG</title>
+  <meta name="description" content="Ingeniero de Montes y especialista SIG con más de 8 años de experiencia en evaluación ambiental, gestión forestal, dirección de equipos, I+D+i, modelización CFD y desarrollo de herramientas geoespaciales con Python.">
+  <meta property="og:title" content="Marckbyn Rodríguez Vélez · Ingeniero de Montes y Especialista SIG">
+  <meta property="og:description" content="Evaluación ambiental, gestión forestal y automatización SIG con Python.">
+  <meta property="og:type" content="profile">
+  <meta property="og:image" content="assets/profile.jpg">
+  <meta name="theme-color" content="#0a192f">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230a192f'/><text x='50' y='64' font-size='40' text-anchor='middle' fill='%2364ffda' font-family='Arial' font-weight='700'>MRV</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Aplica el tema guardado antes de pintar para evitar parpadeos
+    try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch {}
+  </script>
 </head>
+<body>
+  <a class="skip" href="#main">Saltar al contenido</a>
 
-<body class="antialiased">
+  <header class="nav" id="navbar">
+    <div class="container nav__inner">
+      <a href="#inicio" class="nav__logo">MRV</a>
+      <nav aria-label="Principal">
+        <ul class="nav__links" id="navLinks">
+          <li><a href="#sobre-mi">Sobre mí</a></li>
+          <li><a href="#experiencia">Experiencia</a></li>
+          <li><a href="#especializacion">Especialización</a></li>
+          <li><a href="#habilidades">Habilidades</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#publicaciones">Publicaciones</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+      <button class="icon-btn" id="themeToggle" aria-label="Cambiar tema claro/oscuro">
+        <i data-lucide="sun" class="icon-sun"></i><i data-lucide="moon" class="icon-moon"></i>
+      </button>
+      <a href="Marckbyn Stephan Rodríguez Vélez_CV.docx" download class="btn btn--outline btn--sm nav__cv">
+        <i data-lucide="download"></i> CV
+      </a>
+      <button class="icon-btn nav__burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </header>
 
-    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-effect" id="navbar">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold accent-color">
-                MRV
-            </div>
-            <nav class="hidden md:flex space-x-6 text-sm">
-                <a href="#about" class="hover:text-teal-300 transition-colors">Sobre mí</a>
-                <a href="#specialization" class="hover:text-teal-300 transition-colors">Especialización</a>
-                <a href="#skills" class="hover:text-teal-300 transition-colors">Habilidades</a>
-                <a href="#projects" class="hover:text-teal-300 transition-colors">Proyectos</a>
-                <a href="#publications" class="hover:text-teal-300 transition-colors">Publicaciones</a>
-                <a href="#contact" class="hover:text-teal-300 transition-colors">Contacto</a>
-            </nav>
-            <a href="Marckbyn Stephan Rodríguez Vélez_CV.docx" download class="hidden md:block border accent-border text-teal-300 px-4 py-2 rounded-md text-sm hover:bg-teal-300/10 transition-colors">
-                Descargar CV
-            </a>
-            <div class="md:hidden">
-            </div>
+  <main id="main">
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="inicio">
+      <svg class="contours" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true"><path d="M1230 330L1228 335L1225 340L1220 343L1214 346L1207 347L1202 347L1198 349L1197 353L1195 359L1192 366L1187 370L1180 371L1174 369L1168 365L1163 363L1158 361L1152 359L1147 356L1145 352L1145 346L1145 341L1146 337L1146 334L1145 330L1144 326L1143 322L1141 317L1140 312L1140 305L1142 299L1147 295L1154 294L1163 296L1170 300L1175 302L1180 303L1185 301L1190 300L1195 300L1200 302L1204 305L1207 308L1212 310L1218 312L1224 315L1228 320L1230 325Z"/><path d="M1278 330L1274 340L1268 349L1258 356L1247 361L1234 363L1223 365L1217 369L1214 377L1211 390L1204 402L1193 411L1180 413L1167 409L1156 402L1146 396L1136 391L1126 387L1117 380L1112 372L1111 362L1112 353L1112 345L1110 337L1108 330L1105 322L1103 314L1101 304L1099 293L1099 280L1103 269L1113 261L1129 259L1146 264L1160 271L1171 276L1180 277L1189 274L1200 270L1211 270L1221 273L1229 279L1237 284L1247 289L1258 294L1269 301L1276 309L1279 320Z"/><path d="M1323 330L1317 344L1308 358L1296 368L1279 376L1261 380L1245 382L1236 388L1232 401L1227 421L1217 441L1200 454L1180 457L1160 450L1144 438L1129 428L1115 420L1101 412L1089 403L1081 391L1078 377L1078 364L1077 352L1073 341L1068 330L1064 318L1062 305L1060 290L1058 274L1058 255L1065 238L1081 227L1104 225L1129 232L1151 244L1167 252L1180 253L1194 247L1210 241L1227 239L1243 243L1256 251L1269 259L1283 267L1299 275L1314 286L1323 299L1326 315Z"/><path d="M1366 330L1358 349L1347 366L1332 380L1311 391L1288 396L1268 400L1256 409L1250 427L1244 453L1230 481L1208 499L1180 502L1153 491L1132 475L1113 459L1096 447L1078 436L1062 424L1052 409L1047 391L1045 375L1040 360L1033 345L1026 330L1021 313L1019 295L1018 276L1017 255L1018 231L1028 208L1049 193L1080 191L1114 202L1142 218L1163 229L1180 230L1198 222L1220 212L1243 208L1266 211L1285 221L1303 232L1322 243L1342 255L1359 271L1369 290L1370 310Z"/><path d="M1406 330L1396 353L1384 374L1367 392L1343 405L1316 413L1292 419L1277 431L1269 454L1261 487L1244 521L1215 544L1180 547L1147 533L1119 511L1098 489L1077 473L1056 459L1038 444L1025 425L1017 405L1011 386L1002 368L991 350L981 330L975 308L974 286L975 262L975 235L979 206L991 179L1018 161L1057 159L1099 173L1134 193L1160 207L1180 207L1202 196L1229 182L1260 175L1290 178L1315 189L1339 203L1362 218L1385 235L1404 256L1413 280L1412 306Z" class="major"/><path d="M1442 330L1432 356L1420 381L1402 404L1376 421L1345 431L1317 440L1299 454L1290 482L1279 522L1258 563L1223 590L1180 593L1140 575L1108 546L1083 518L1060 497L1037 479L1015 462L999 441L987 419L976 397L962 377L946 355L932 330L926 303L927 276L931 248L935 217L940 183L956 151L988 130L1035 128L1084 145L1126 169L1156 185L1180 185L1206 170L1240 152L1278 141L1315 143L1347 156L1376 173L1404 193L1429 215L1448 241L1455 271L1451 301Z"/><path d="M1475 330L1464 360L1454 389L1437 415L1410 436L1376 450L1344 461L1323 479L1311 511L1298 557L1272 605L1230 635L1180 638L1133 616L1096 580L1068 546L1043 519L1018 499L994 479L974 456L958 433L941 409L920 386L897 360L880 330L874 298L879 265L888 233L895 198L904 161L923 125L961 101L1013 99L1070 118L1118 145L1153 164L1180 162L1211 144L1250 121L1296 106L1341 107L1380 121L1415 142L1446 167L1473 195L1490 227L1495 263L1487 298Z"/><path d="M1505 330L1494 363L1486 396L1473 427L1446 453L1409 471L1373 485L1348 505L1333 542L1317 594L1286 647L1238 681L1180 683L1126 656L1085 613L1055 572L1028 541L1001 517L974 495L950 471L928 446L904 422L875 395L846 365L825 330L820 292L830 255L844 219L857 181L870 140L893 100L934 74L993 71L1056 91L1110 121L1149 141L1180 139L1215 116L1261 88L1315 70L1368 70L1415 85L1455 110L1489 140L1517 174L1532 213L1532 255L1520 294Z"/><path d="M1532 330L1523 366L1518 403L1509 439L1484 470L1445 493L1405 510L1375 534L1356 574L1336 631L1300 689L1245 725L1180 726L1120 694L1075 645L1042 597L1013 561L984 534L954 511L926 486L897 461L865 434L828 406L791 371L767 330L764 286L780 244L802 205L821 164L838 120L864 77L910 48L974 44L1043 66L1102 97L1145 118L1180 114L1220 87L1273 54L1334 32L1396 31L1450 49L1495 78L1533 114L1560 155L1572 200L1566 247L1549 291Z"/><path d="M1557 330L1549 369L1550 409L1546 451L1523 489L1483 516L1439 537L1404 564L1380 608L1355 668L1314 730L1252 768L1180 767L1114 730L1064 675L1029 621L999 580L968 551L935 526L901 501L866 475L825 448L778 416L733 377L707 330L706 280L729 233L760 191L787 149L809 102L838 57L887 24L955 19L1030 40L1094 73L1141 93L1180 87L1225 56L1284 18L1354 -7L1424 -8L1485 12L1536 45L1575 87L1602 135L1610 188L1599 240L1576 288Z" class="major"/><path d="M1579 330L1574 372L1582 416L1584 464L1565 508L1525 542L1476 567L1435 596L1405 642L1374 705L1327 769L1259 808L1180 806L1109 764L1055 703L1017 644L986 599L952 568L915 542L876 517L833 490L782 462L725 428L673 383L644 330L647 274L679 223L720 178L756 134L783 86L815 38L866 3L938 -6L1017 14L1085 47L1137 67L1180 58L1231 23L1297 -19L1375 -47L1453 -48L1521 -26L1576 13L1617 61L1642 116L1646 176L1628 234L1600 286Z"/><path d="M1599 330L1599 374L1614 423L1625 477L1610 529L1569 569L1515 598L1467 630L1431 677L1393 742L1340 808L1265 847L1180 842L1103 796L1046 730L1006 666L972 618L935 585L894 559L849 533L798 506L737 477L670 439L611 390L579 330L587 268L629 212L682 165L727 121L760 72L794 21L846 -18L921 -30L1003 -12L1076 19L1132 38L1180 26L1236 -13L1310 -58L1396 -88L1482 -88L1556 -62L1615 -18L1658 36L1681 98L1680 164L1656 228L1622 283Z"/><path d="M1619 330L1623 377L1648 430L1667 491L1658 551L1616 598L1557 631L1501 665L1456 713L1412 778L1352 844L1271 882L1180 875L1098 826L1038 755L995 688L958 637L918 603L872 576L821 551L761 523L691 492L614 451L547 397L514 330L528 261L580 201L646 153L701 109L739 60L775 6L828 -37L904 -53L989 -39L1066 -10L1127 6L1180 -9L1243 -51L1324 -99L1418 -129L1511 -128L1591 -98L1654 -49L1697 12L1718 81L1712 154L1681 223L1642 281Z"/><path d="M1638 330L1648 379L1682 438L1712 506L1709 574L1666 628L1601 666L1536 701L1482 749L1430 813L1363 877L1276 915L1180 905L1094 852L1030 778L984 709L944 657L900 622L848 595L790 569L723 541L643 508L556 464L482 404L448 330L468 255L533 191L612 142L678 98L722 49L759 -7L811 -54L887 -76L975 -67L1055 -42L1121 -29L1180 -47L1249 -91L1338 -141L1439 -171L1539 -167L1624 -133L1690 -78L1734 -10L1753 65L1742 144L1705 217L1662 279Z"/><path d="M292 780L290 784L288 788L286 792L286 796L284 801L281 804L275 806L268 805L262 803L257 802L254 802L250 804L246 806L240 808L235 810L229 810L223 808L217 806L214 802L213 797L214 792L216 787L218 783L217 780L216 776L215 773L217 769L221 766L225 764L228 762L229 758L230 753L233 748L238 744L244 742L250 744L255 747L260 751L263 754L266 758L268 761L270 764L273 766L278 767L284 769L289 772L292 776Z"/><path d="M337 780L332 789L326 796L322 804L320 812L316 821L309 828L298 830L285 829L274 826L265 823L257 825L250 829L241 834L231 838L219 840L207 840L195 838L184 833L178 824L176 814L180 803L185 794L188 787L187 780L183 773L181 765L183 758L190 752L197 748L203 743L207 735L210 725L216 715L226 708L238 706L250 709L261 715L269 722L276 729L282 736L286 742L290 748L297 751L306 754L318 757L330 763L337 771Z"/><path d="M383 780L375 793L364 805L356 815L352 827L347 839L336 849L321 854L302 852L285 848L272 846L261 848L250 855L236 863L220 869L203 871L184 871L166 867L151 859L142 846L141 830L147 814L156 800L160 789L158 780L152 770L147 758L149 746L157 737L168 730L177 722L184 711L190 697L199 682L214 672L232 670L250 675L266 684L279 695L289 705L297 715L303 724L310 732L320 737L336 740L355 745L373 754L384 766Z"/><path d="M431 780L419 798L402 813L390 826L382 841L374 856L362 869L342 876L319 875L297 871L280 870L265 874L250 883L231 893L210 900L186 903L162 902L138 897L118 886L106 868L106 846L116 824L128 806L135 792L131 780L121 766L112 751L112 734L122 721L136 710L150 700L159 686L169 668L183 650L202 638L226 636L250 643L271 655L287 668L301 682L312 695L321 706L330 716L344 722L366 726L393 733L418 744L432 761Z"/><path d="M481 780L463 802L439 821L421 837L410 854L400 872L385 888L362 897L335 898L310 895L288 895L270 901L250 912L226 924L199 933L169 936L139 934L110 926L86 912L72 889L73 862L86 834L103 812L111 795L106 780L91 763L77 743L75 722L85 704L103 690L120 676L134 659L148 638L166 618L191 605L221 603L250 612L275 627L296 643L313 659L327 674L338 688L351 699L369 707L398 712L433 720L465 734L483 755Z" class="major"/><path d="M530 780L506 807L475 828L451 847L436 866L424 887L407 906L382 918L352 921L322 920L297 922L275 930L250 944L221 958L188 966L152 968L117 965L82 955L54 937L39 910L41 877L58 844L78 817L88 797L80 780L60 760L41 735L35 709L46 686L67 668L89 651L108 632L127 609L150 587L181 574L216 573L250 584L280 601L304 618L325 636L342 653L356 669L372 682L396 691L430 697L473 706L513 724L534 750Z"/><path d="M580 780L550 812L510 836L479 856L459 877L446 900L428 922L401 937L368 944L336 946L307 950L280 962L250 978L215 992L176 1000L136 1001L95 995L56 982L24 961L7 929L10 891L30 853L54 822L66 799L55 780L29 757L3 727L-6 695L5 667L29 644L57 625L81 604L106 580L135 558L171 545L211 545L250 558L284 576L312 595L337 613L358 631L376 649L395 664L423 674L464 681L515 692L562 713L586 745Z"/><path d="M630 780L592 816L544 843L505 864L481 887L466 912L448 938L420 957L385 967L350 973L317 981L285 996L250 1013L209 1028L165 1035L119 1032L74 1024L31 1008L-5 984L-24 948L-20 905L4 862L31 827L43 802L30 780L-3 753L-36 719L-50 681L-39 647L-10 620L23 599L55 576L85 551L120 529L162 517L207 520L250 533L287 552L320 571L349 589L374 608L396 628L419 644L452 656L500 665L558 678L611 703L638 739Z"/><path d="M678 780L633 820L576 850L529 872L501 896L484 924L466 953L438 976L403 991L365 1002L328 1014L291 1032L250 1051L203 1065L153 1069L103 1063L54 1051L7 1033L-32 1005L-53 966L-48 918L-22 870L8 832L21 804L3 780L-36 750L-76 710L-95 666L-84 626L-51 595L-11 571L28 548L65 524L106 503L154 492L203 496L250 511L291 530L328 547L362 565L392 584L418 605L446 624L483 637L536 648L601 664L660 692L690 734Z"/><path d="M725 780L672 824L606 856L552 880L520 905L502 935L485 968L457 996L421 1016L381 1032L340 1049L298 1070L250 1091L197 1103L142 1103L88 1093L36 1077L-15 1056L-57 1026L-80 983L-76 931L-48 879L-16 837L-3 807L-25 780L-71 746L-118 701L-141 650L-130 605L-93 570L-46 543L1 520L46 497L94 478L146 470L200 476L250 491L295 508L336 524L375 539L411 557L442 580L473 601L515 618L573 631L645 649L709 682L740 728Z" class="major"/><path d="M756 90L757 94L756 98L753 101L750 104L748 107L745 110L741 112L737 113L732 113L727 110L723 108L720 108L717 110L712 114L706 116L700 117L696 115L692 112L690 108L689 104L688 101L688 97L689 93L691 90L692 87L693 84L693 81L694 78L696 75L699 73L702 71L704 68L707 64L710 60L715 57L720 56L725 59L729 64L731 68L733 72L735 74L738 75L742 77L745 78L748 81L751 83L754 86Z"/><path d="M794 90L795 98L792 105L786 112L779 117L773 123L768 129L762 134L753 136L743 135L734 131L726 127L720 127L713 132L704 139L692 144L680 145L671 141L664 134L661 126L658 118L657 111L658 103L661 96L664 90L666 84L666 78L666 72L667 65L670 60L676 55L683 51L688 46L693 39L700 30L709 24L720 23L730 29L737 38L742 48L745 55L750 59L756 61L764 63L771 66L778 71L784 76L790 83Z"/><path d="M834 90L834 102L828 113L818 122L807 130L798 138L790 146L781 154L769 158L755 157L741 152L729 147L720 148L709 154L695 164L678 172L660 173L646 167L636 157L631 145L628 132L628 120L630 109L634 99L639 90L641 82L640 73L637 63L638 52L643 43L652 36L662 30L671 23L680 13L690 1L704 -7L720 -8L735 -0L746 13L752 28L757 38L764 44L774 47L786 50L797 54L808 61L818 69L828 79Z"/><path d="M875 90L874 106L864 121L848 133L832 142L820 151L810 162L799 173L784 179L766 179L748 174L733 169L720 169L705 178L686 191L663 201L639 202L620 194L608 179L602 163L599 146L600 130L603 115L609 102L615 90L616 79L613 67L608 53L607 38L614 25L626 15L641 8L654 -1L667 -13L681 -27L699 -38L720 -39L739 -28L754 -10L762 8L769 22L779 29L792 32L808 36L824 42L840 50L855 61L867 74Z"/><path d="M917 90L915 110L900 129L878 142L857 153L840 164L829 177L816 190L799 200L778 201L756 197L737 191L720 193L701 203L677 218L648 230L619 231L595 220L581 201L573 180L571 159L573 139L578 120L586 104L592 90L592 77L586 61L578 43L575 23L582 6L599 -7L619 -16L637 -25L653 -39L672 -55L694 -66L720 -67L744 -54L761 -33L772 -11L781 5L793 14L810 18L831 22L852 29L873 39L892 53L908 70Z" class="major"/><path d="M960 90L955 115L935 136L906 152L879 163L859 175L846 191L833 208L814 221L790 225L764 221L741 216L720 218L697 230L667 247L632 259L598 259L571 245L554 223L546 197L544 171L547 147L554 126L563 106L570 90L568 74L558 55L546 32L541 7L549 -15L570 -30L595 -40L619 -50L640 -64L663 -81L690 -94L720 -94L748 -79L768 -54L782 -29L793 -11L808 -2L830 2L855 7L882 15L907 28L931 45L950 66Z"/><path d="M1003 90L995 119L969 143L933 161L899 173L876 186L862 203L849 224L829 241L802 249L772 246L745 242L720 245L692 258L658 276L617 288L578 287L547 270L528 243L519 213L518 183L522 156L531 131L542 109L548 90L544 71L530 49L513 21L505 -9L515 -36L540 -54L572 -65L602 -74L628 -88L655 -105L686 -119L720 -119L752 -103L775 -76L791 -48L805 -28L824 -19L850 -14L880 -9L912 1L942 16L970 36L993 61Z"/><path d="M1559 860L1558 864L1555 867L1550 870L1544 871L1540 873L1539 875L1538 879L1537 883L1534 887L1530 890L1525 893L1520 894L1514 894L1509 892L1505 888L1503 884L1501 879L1500 876L1497 874L1493 873L1489 870L1487 867L1488 863L1489 860L1489 857L1487 853L1485 848L1484 843L1485 838L1489 835L1495 834L1502 834L1507 835L1512 836L1516 837L1520 838L1524 838L1527 838L1532 837L1538 835L1544 835L1549 837L1552 840L1553 845L1554 849L1555 853L1557 856Z"/><path d="M1595 860L1594 868L1588 875L1579 879L1569 882L1562 886L1558 891L1556 898L1554 907L1548 915L1541 922L1531 926L1520 929L1509 928L1499 924L1491 916L1486 906L1484 898L1481 891L1475 888L1466 885L1458 881L1453 874L1453 867L1455 860L1456 853L1453 846L1449 837L1447 826L1451 817L1459 811L1471 809L1484 810L1495 812L1504 813L1513 815L1520 817L1527 817L1535 816L1545 813L1556 809L1569 809L1580 812L1586 820L1588 829L1587 838L1589 845L1592 852Z"/><path d="M1629 860L1628 871L1621 882L1607 889L1594 894L1584 899L1579 907L1576 919L1572 932L1563 944L1551 953L1536 960L1520 963L1503 962L1488 955L1477 943L1471 928L1468 915L1463 905L1454 901L1440 897L1426 891L1418 882L1416 871L1419 860L1420 849L1418 838L1413 825L1412 810L1417 797L1430 788L1448 785L1467 786L1483 789L1497 791L1509 793L1520 795L1531 795L1543 793L1557 788L1576 782L1596 781L1612 787L1620 798L1622 813L1620 827L1621 838L1624 849Z"/><path d="M1660 860L1660 875L1652 888L1636 898L1619 906L1608 914L1601 925L1597 940L1590 958L1579 973L1562 985L1542 994L1520 997L1498 995L1478 985L1464 969L1456 948L1452 930L1447 919L1434 913L1414 909L1394 902L1381 890L1377 875L1380 860L1383 846L1381 830L1377 813L1377 794L1385 777L1403 767L1427 763L1450 764L1472 766L1490 769L1505 771L1520 773L1534 773L1550 769L1571 762L1596 754L1623 753L1645 760L1656 777L1657 797L1653 816L1651 832L1654 846Z"/><path d="M1688 860L1690 878L1682 895L1665 908L1647 918L1633 929L1625 944L1619 964L1610 985L1594 1003L1573 1017L1547 1027L1520 1031L1492 1027L1468 1015L1451 993L1442 968L1438 945L1431 931L1414 925L1388 921L1360 913L1341 898L1335 879L1338 860L1343 841L1344 822L1342 801L1343 778L1355 759L1378 746L1406 741L1435 742L1460 745L1482 747L1502 749L1520 751L1538 750L1559 744L1585 735L1617 725L1651 723L1678 733L1691 755L1691 781L1684 806L1679 826L1682 843Z" class="major"/><path d="M1715 860L1719 881L1711 901L1695 918L1675 932L1660 946L1651 965L1643 988L1630 1013L1610 1034L1583 1049L1553 1059L1520 1063L1487 1058L1459 1043L1439 1017L1429 987L1424 960L1415 944L1394 937L1361 933L1326 924L1300 907L1291 884L1295 860L1302 837L1306 814L1306 789L1311 764L1327 742L1354 727L1387 722L1420 722L1449 723L1475 725L1498 726L1520 727L1542 725L1567 718L1599 707L1639 696L1680 693L1712 706L1727 733L1725 765L1714 796L1706 820L1708 840Z"/><path d="M1740 860L1746 884L1741 907L1725 928L1705 946L1690 964L1679 987L1668 1014L1651 1042L1626 1064L1594 1080L1558 1090L1520 1093L1483 1088L1450 1070L1427 1040L1416 1005L1410 974L1400 956L1374 950L1333 946L1289 936L1257 916L1245 889L1250 860L1260 833L1268 806L1272 778L1281 750L1301 726L1332 710L1370 703L1406 702L1438 702L1467 701L1494 701L1520 701L1546 699L1576 691L1614 678L1661 665L1709 663L1746 679L1762 711L1758 750L1742 786L1731 815L1731 838Z"/><path d="M1763 860L1773 887L1771 914L1757 938L1738 961L1721 984L1708 1011L1694 1041L1672 1071L1641 1094L1604 1110L1563 1119L1520 1122L1478 1116L1441 1096L1415 1062L1403 1023L1396 989L1384 969L1353 963L1304 960L1252 949L1213 926L1197 894L1203 860L1217 828L1230 798L1239 767L1253 737L1277 711L1312 694L1353 686L1392 683L1427 681L1459 677L1490 675L1520 674L1551 672L1586 663L1629 649L1683 635L1737 633L1780 652L1797 690L1789 736L1769 777L1754 810L1753 835Z"/></svg>
+      <canvas id="forest" class="forest" aria-hidden="true"></canvas>
+      <div class="hud mono" aria-hidden="true">
+        <div class="hud__north"><svg viewBox="0 0 24 32"><path d="M12 2 L20 28 L12 22 L4 28 Z"/></svg><span>N</span></div>
+        <div class="hud__panel">
+          <div><span>LAT</span> <b id="hudLat">38.7250° N</b></div>
+          <div><span>LON</span> <b id="hudLon">0.2450° W</b></div>
+          <div><span>Z</span> <b id="hudZ">1.126 m</b></div>
+          <div><span>EPSG</span> <b>25830</b></div>
         </div>
-    </header>
-
-    <main class="container mx-auto px-6 md:px-16 lg:px-24 pt-24">
-        
-        <section id="hero" class="min-h-screen flex flex-col justify-center items-start -mt-16">
-            <div class="w-full reveal">
-                <p class="text-teal-300 mb-4">Hola, mi nombre es</p>
-                <h1 class="text-4xl md:text-7xl font-bold text-slate-200">Marckbyn Rodríguez.</h1>
-                <h2 class="text-3xl md:text-6xl font-bold text-slate-400 mt-2">Soy <span id="typed-text" class="accent-color"></span><span class="typed-cursor">|</span></h2>
-                <p class="mt-6 max-w-xl text-slate-400">
-                    Ingeniero de Montes con pasión por los SIG. Me encanta transformar información geoespacial en soluciones. Combinando la ingeniería ambiental y SIG con el desarrollo de software soy capaz de automatizar procesos necesarios en la ingeniería civil, la planificación territorial, ambiental y urbanística.
-                </p>
-                <div class="mt-8 flex items-center space-x-6">
-                    <a href="https://www.linkedin.com/in/marckbyn-rodr%C3%ADguez-v%C3%A9lez-68544bb7/" target="_blank" class="text-slate-400 hover:text-teal-300 transition-colors">
-                        <i data-lucide="linkedin" class="w-6 h-6"></i>
-                    </a>
-                    <a href="mailto:tuemail@example.com" class="text-slate-400 hover:text-teal-300 transition-colors">
-                        <i data-lucide="mail" class="w-6 h-6"></i>
-                    </a>
-                     <a href="#projects" class="border accent-border text-teal-300 px-6 py-3 rounded-md hover:bg-teal-300/10 transition-colors">
-                        Ver mis proyectos
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="py-24">
-            <h2 class="section-title text-2xl font-bold text-slate-200 flex items-center reveal">Sobre mí</h2>
-            <div class="flex flex-col md:flex-row gap-12 mt-8">
-                <div class="md:w-2/3 space-y-4 text-slate-400 reveal">
-                    <p>
-                        Durante más de 8 años en <span class="text-teal-300">Vielca Medio Ambiente</span>, he fusionado mi formación como Ingeniero de Montes con un profundo interés en la tecnología geoespacial. Mi trabajo va más allá de la redacción de proyectos; me especializo en la creación de flujos de trabajo eficientes y en el desarrollo de herramientas personalizadas que resuelven problemas complejos.
-                    </p>
-                    <p>
-                        He programado <span class="text-teal-300">plugins para ArcMap y QGIS</span> y desarrollado scripts en Python para automatizar tareas repetitivas, liberando tiempo valioso para el análisis y la toma de decisiones. Además, disfruto compartiendo conocimiento, por lo que he establecido <span class="text-teal-300">procedimientos y formaciones internas en SIG</span>, capacitando a mi equipo para mejorar nuestra productividad y la calidad de nuestro trabajo.
-                    </p>
-                     <p>
-                        Busco constantemente formas innovadoras de aplicar la tecnología para una gestión más inteligente y sostenible de nuestro entorno.
-                    </p>
-                </div>
-                <div class="md:w-1/3 flex justify-center items-start reveal">
-                    <div class="w-64 h-64 rounded-lg relative group">
-                        <div class="absolute inset-0 bg-teal-300 rounded-lg transform transition-transform duration-300 group-hover:translate-x-2 group-hover:translate-y-2"></div>
-                        <img src="assets/profile.jpg" 
-                             alt="Marckbyn Rodríguez Vélez"
-                             class="absolute inset-0 w-full h-full object-cover rounded-lg grayscale hover:grayscale-0 transition-all duration-300">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="specialization" class="py-24">
-            <h2 class="section-title text-2xl font-bold text-slate-200 flex items-center reveal">Áreas de Especialización</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-                <div class="glass-effect p-6 rounded-lg reveal">
-                    <h3 class="text-lg font-bold text-teal-300 mb-4 flex items-center"><i data-lucide="file-check-2" class="w-5 h-5 mr-2"></i>Documentación y Legislación Ambiental</h3>
-                    <ul class="space-y-3 text-sm text-slate-400 list-disc list-inside">
-                        <li>Sólido conocimiento de la legislación ambiental estatal, destacando la <span class="text-slate-200">Ley 21/2013 de Evaluación Ambiental</span>.</li>
-                        <li>Redacción de <span class="text-slate-200">Estudios de Impacto Ambiental (EsIA)</span> en procedimientos ordinarios y simplificados.</li>
-                        <li>Análisis de afecciones y elaboración de estudios para la <span class="text-slate-200">Red Natura 2000</span>.</li>
-                        <li>Experiencia en la tramitación de <span class="text-slate-200">Autorizaciones Ambientales Integradas (AAI)</span>.</li>
-                        <li>Elaboración de Evaluaciones Ambientales y Territoriales Estratégicas (EATE).</li>
-                    </ul>
-                </div>
-                <div class="glass-effect p-6 rounded-lg reveal" style="transition-delay: 200ms;">
-                    <h3 class="text-lg font-bold text-teal-300 mb-4 flex items-center"><i data-lucide="trees" class="w-5 h-5 mr-2"></i>Gestión Forestal y Trabajo de Campo</h3>
-                    <ul class="space-y-3 text-sm text-slate-400 list-disc list-inside">
-                        <li><span class="text-slate-200">Planificación y ejecución</span> integral de actividades de campo (muestreos, recopilación de datos).</li>
-                        <li>Redacción de <span class="text-slate-200">Planes de Ordenación de Montes</span> y otros instrumentos de gestión forestal.</li>
-                        <li>Ejecución de <span class="text-slate-200">inventarios forestales</span> para la estimación de existencias y biomasa.</li>
-                        <li>Supervisión y <span class="text-slate-200">apoyo ambiental en obra</span>, garantizando la correcta ejecución de medidas.</li>
-                        <li>Uso de GPS y apps móviles para la captura de datos georreferenciados de alta precisión.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="skills" class="py-24">
-            <h2 class="section-title text-2xl font-bold text-slate-200 flex items-center reveal">Habilidades Técnicas</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-                <div class="glass-effect p-6 rounded-lg reveal">
-                    <h3 class="text-lg font-bold text-teal-300 mb-4 flex items-center"><i data-lucide="leaf" class="w-5 h-5 mr-2"></i>Ingeniería y Medio Ambiente</h3>
-                    <ul class="space-y-2 text-sm text-slate-400">
-                        <li>Planificación Forestal Sostenible</li>
-                        <li>Evaluación de Impacto Ambiental (EIA)</li>
-                        <li>Restauración de Ecosistemas</li>
-                        <li>Gestión de Recursos Hídricos</li>
-                        <li>Prevención de Incendios Forestales</li>
-                        <li>Ordenación del Territorio</li>
-                    </ul>
-                </div>
-                <div class="glass-effect p-6 rounded-lg reveal" style="transition-delay: 200ms;">
-                    <h3 class="text-lg font-bold text-teal-300 mb-4 flex items-center"><i data-lucide="map" class="w-5 h-5 mr-2"></i>Tecnologías GIS</h3>
-                    <ul class="space-y-2 text-sm text-slate-400">
-                        <li>ArcGIS & ArcMap</li>
-                        <li>QGIS</li>
-                        <li>Modelado Hidrológico (HEC-HMS)</li>
-                        <li>Gestión de Geodatabases (ESRI)</li>
-                        <li>Análisis Espacial y Teledetección</li>
-                        <li>Collect Earth & Google Earth Engine</li>
-                    </ul>
-                </div>
-                <div class="glass-effect p-6 rounded-lg reveal" style="transition-delay: 400ms;">
-                    <h3 class="text-lg font-bold text-teal-300 mb-4 flex items-center"><i data-lucide="code-2" class="w-5 h-5 mr-2"></i>Desarrollo y Scripting</h3>
-                    <ul class="space-y-2 text-sm text-slate-400">
-                        <li>Python (Pandas, GeoPandas)</li>
-                        <li>ArcPy para automatización en ArcGIS</li>
-                        <li>PyQGIS para desarrollo de plugins</li>
-                        <li>SQL para consultas a bases de datos</li>
-                        <li>Automatización de flujos de trabajo</li>
-                        <li>Formación y Documentación Técnica</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="py-24">
-            <h2 class="section-title text-2xl font-bold text-slate-200 flex items-center reveal">Proyectos Destacados</h2>
-            <div class="flex flex-wrap gap-4 my-8 reveal">
-                <button class="project-filter-btn active" data-filter="all">Todos</button>
-                <button class="project-filter-btn" data-filter="dev">Desarrollo GIS</button>
-                <button class="project-filter-btn" data-filter="ambiente">Medio Ambiente</button>
-                <button class="project-filter-btn" data-filter="hidraulica">Obras Hidráulicas</button>
-                <button class="project-filter-btn" data-filter="urbanismo">Urbanismo</button>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="project-grid">
-            </div>
-        </section>
-        
-        <section id="publications" class="py-24">
-            <h2 class="section-title text-2xl font-bold text-slate-200 flex items-center reveal">Publicaciones Científicas</h2>
-            <div class="mt-8">
-                <div class="glass-effect p-6 rounded-lg reveal project-card">
-                    <div class="flex items-start gap-4">
-                        <div>
-                            <i data-lucide="file-text" class="text-teal-300 w-8 h-8 mt-1"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-200 mb-2">
-                                Balancing Act: A participatory system dynamics approach for Mar Menor’s sustainable future
-                            </h3>
-                            <p class="text-sm text-slate-400 mb-3">
-                                Coautor de un estudio publicado en la prestigiosa revista <span class="text-teal-300">Ecological Modelling</span>. La investigación utiliza un enfoque participativo de modelado de dinámica de sistemas para explorar la compleja interacción entre factores ambientales, sociales y económicos en la cuenca del Mar Menor, proponiendo un camino hacia su sostenibilidad.
-                            </p>
-                            <p class="text-xs text-slate-500 mb-4">
-                                Rashidian, M., Tartiu, V. E., Seifert-Dähnn, I., Nawrath, M., Barkved, L. J., Blanco-Gómez, P., & <strong>Rodríguez-Vélez, M. S.</strong>
-                            </p>
-                            <a href="https://doi.org/10.1016/j.ecolmodel.2025.111268" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-teal-300 text-sm font-semibold hover:underline">
-                                Ver publicación
-                                <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="py-24 text-center">
-            <h2 class="text-teal-300 text-lg font-medium reveal">¿Cuál es el siguiente paso?</h2>
-            <h3 class="text-4xl md:text-5xl font-bold text-slate-200 mt-2 reveal">Hablemos</h3>
-            <p class="max-w-xl mx-auto mt-4 text-slate-400 reveal">
-                Siempre estoy abierto a nuevas oportunidades y colaboraciones. Si tienes un proyecto en mente o crees que mi perfil encaja en tu equipo, no dudes en contactarme.
-            </p>
-            <a href="mailto:tuemail@example.com" class="inline-block mt-8 border accent-border text-teal-300 px-8 py-4 rounded-md hover:bg-teal-300/10 transition-colors reveal">
-                Enviar un mensaje
+        <div class="hud__scale"><i></i><span>0</span><span>50</span><span>100 m</span></div>
+      </div>
+      <div class="container hero__inner">
+        <div class="reveal">
+          <p class="mono accent">Hola, mi nombre es</p>
+          <h1>Marckbyn Rodríguez.</h1>
+          <p class="hero__typed">Soy <span id="typed" class="accent"></span><span class="cursor" aria-hidden="true">|</span></p>
+          <p class="hero__lead">
+            Ingeniero de Montes con pasión por los <strong>Sistemas de Información Geográfica</strong>.
+            Transformo información geoespacial en soluciones: combino ingeniería ambiental, SIG y
+            desarrollo de software para automatizar procesos de ingeniería civil y de planificación
+            territorial, ambiental y urbanística. Dirijo equipos técnicos e impulso proyectos de
+            <strong>I+D+i</strong> con modelización avanzada, incluida la simulación <strong>CFD</strong>.
+          </p>
+          <div class="hero__cta">
+            <a href="#proyectos" class="btn btn--primary">Ver mis proyectos <i data-lucide="arrow-down"></i></a>
+            <a href="#contacto" class="btn btn--outline">Hablemos</a>
+            <a href="https://www.linkedin.com/in/marckbyn-rodr%C3%ADguez-v%C3%A9lez-68544bb7/" target="_blank" rel="noopener" class="icon-btn icon-btn--lg" aria-label="LinkedIn">
+              <svg class="lucide" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
             </a>
-        </section>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    </main>
-    
-    <footer class="text-center py-6 text-xs text-slate-500">
-        <p>Diseñado y construido por Marckbyn Rodríguez Vélez 😎</p>
-    </footer>
+    <!-- ===== CIFRAS ===== -->
+    <section class="stats-band" aria-label="Cifras destacadas">
+      <div class="container">
+        <ul class="stats reveal">
+          <li><strong data-count="8" data-prefix="+">+8</strong><span>años de experiencia en consultoría ambiental</span></li>
+          <li><strong data-count="26">26</strong><span>municipios con cartografía de prevención de incendios</span></li>
+          <li><strong data-count="70" data-suffix="%">70%</strong><span>menos tiempo de análisis con mi plugin de cuencas</span></li>
+          <li><strong data-count="3">3</strong><span>países: España, Guatemala y El Salvador</span></li>
+        </ul>
+      </div>
+    </section>
 
-    <script>
-        // Script para la transición del fondo
-        window.onload = () => {
-            document.body.classList.add('loaded');
-        };
+    <!-- ===== SOBRE MÍ ===== -->
+    <section id="sobre-mi" class="section">
+      <div class="container">
+        <h2 class="section__title reveal"><span class="mono">01.</span> Sobre mí</h2>
+        <div class="about">
+          <div class="about__text reveal">
+            <p>
+              Durante más de 8 años en <span class="hl">Vielca Medio Ambiente</span> he unido mi formación como
+              Ingeniero de Montes con un profundo interés por la tecnología geoespacial. Mi trabajo va más allá
+              de la redacción de proyectos: me especializo en crear flujos de trabajo eficientes y herramientas
+              a medida que resuelven problemas complejos.
+            </p>
+            <p>
+              He programado <span class="hl">plugins para ArcMap y QGIS</span> y scripts en Python que automatizan
+              tareas repetitivas, liberando tiempo para el análisis y la toma de decisiones. También disfruto
+              compartiendo conocimiento: he creado <span class="hl">procedimientos y formaciones internas en SIG</span>
+              que han mejorado la productividad y la calidad del trabajo de mi equipo.
+            </p>
+            <p>Busco constantemente formas innovadoras de aplicar la tecnología a una gestión más inteligente y sostenible de nuestro entorno.</p>
+          </div>
+          <div class="photo reveal">
+            <div class="photo__frame">
+              <!-- Sube tu foto a assets/profile.jpg -->
+              <img src="assets/profile.jpg" alt="Marckbyn Rodríguez Vélez" width="300" height="300"
+                   onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'photo__fallback',textContent:'MR'}))">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
+    <!-- ===== EXPERIENCIA ===== -->
+    <section id="experiencia" class="section section--alt">
+      <div class="container">
+        <h2 class="section__title reveal"><span class="mono">02.</span> Experiencia y formación</h2>
+        <ol class="timeline">
+          <li class="reveal">
+            <span class="timeline__date mono">+8 años · Actualidad</span>
+            <h3>Ingeniero de Montes · Técnico SIG <span>@ Vielca Medio Ambiente</span></h3>
+            <ul class="bullets">
+              <li>Redacción de Estudios de Impacto Ambiental, Evaluaciones Ambientales y Territoriales Estratégicas y documentación para Red Natura 2000.</li>
+              <li>Desarrollo de plugins (PyQGIS) y scripts (ArcPy) que automatizan cartografía, informes y análisis hidrológicos.</li>
+              <li>Responsable del componente SIG en proyectos de prevención de incendios, restauración hidráulica y urbanismo.</li>
+              <li>Dirección y coordinación de equipos técnicos multidisciplinares: planificación, reparto de tareas y seguimiento de plazos y calidad.</li>
+              <li>Participación en proyectos de I+D+i, con modelización de dinámica de sistemas y simulación CFD.</li>
+              <li>Diseño de procedimientos internos y formación en SIG para el equipo técnico.</li>
+            </ul>
+          </li>
+          <li class="reveal">
+            <span class="timeline__date mono">Formación</span>
+            <!-- TODO: añade universidad y años -->
+            <h3>Ingeniería de Montes</h3>
+            <p>Formación en gestión forestal, medio ambiente e ingeniería del territorio, complementada con formación continua en SIG, teledetección y programación en Python.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
 
-            window.addEventListener('scroll', function() {
-                const navbar = document.getElementById('navbar');
-                if (window.scrollY > 50) {
-                    navbar.classList.add('py-2');
-                    navbar.classList.remove('py-4');
-                    navbar.style.boxShadow = '0 10px 30px -10px rgba(2, 12, 27, 0.7)';
-                } else {
-                    navbar.classList.add('py-4');
-                    navbar.classList.remove('py-2');
-                    navbar.style.boxShadow = 'none';
-                }
-            });
+    <!-- ===== ESPECIALIZACIÓN ===== -->
+    <section id="especializacion" class="section">
+      <div class="container">
+        <h2 class="section__title reveal"><span class="mono">03.</span> Áreas de especialización</h2>
+        <div class="grid grid--2">
+          <article class="card reveal">
+            <h3><i data-lucide="file-check-2"></i> Documentación y legislación ambiental</h3>
+            <ul class="bullets">
+              <li>Sólido conocimiento de la legislación ambiental estatal, en especial la <strong>Ley 21/2013 de Evaluación Ambiental</strong>.</li>
+              <li>Redacción de <strong>Estudios de Impacto Ambiental (EsIA)</strong> en procedimientos ordinarios y simplificados.</li>
+              <li>Análisis de afecciones y estudios para la <strong>Red Natura 2000</strong>.</li>
+              <li>Tramitación de <strong>Autorizaciones Ambientales Integradas (AAI)</strong>.</li>
+              <li>Evaluaciones Ambientales y Territoriales Estratégicas (<strong>EATE</strong>).</li>
+            </ul>
+          </article>
+          <article class="card reveal">
+            <h3><i data-lucide="trees"></i> Gestión forestal y trabajo de campo</h3>
+            <ul class="bullets">
+              <li><strong>Planificación y ejecución</strong> de campañas de campo: muestreos y toma de datos.</li>
+              <li>Redacción de <strong>Planes de Ordenación de Montes</strong> y otros instrumentos de gestión forestal.</li>
+              <li><strong>Inventarios forestales</strong> para estimar existencias y biomasa.</li>
+              <li>Supervisión y <strong>asistencia ambiental en obra</strong>.</li>
+              <li>Captura de datos georreferenciados de alta precisión con GPS y apps móviles.</li>
+            </ul>
+          </article>
+          <article class="card reveal">
+            <h3><i data-lucide="users"></i> Dirección de equipos</h3>
+            <ul class="bullets">
+              <li><strong>Coordinación de equipos multidisciplinares</strong> de ingeniería, medio ambiente y SIG.</li>
+              <li>Planificación de proyectos, reparto de tareas y <strong>seguimiento de plazos y calidad</strong>.</li>
+              <li>Interlocución con clientes y administraciones durante la tramitación.</li>
+              <li><strong>Formación y mentoría</strong>: procedimientos internos y cursos de SIG para el equipo.</li>
+            </ul>
+          </article>
+          <article class="card reveal">
+            <h3><i data-lucide="flask-conical"></i> I+D+i y modelización</h3>
+            <ul class="bullets">
+              <!-- TODO: concreta a qué aplicas el CFD (viento sobre el terreno, incendios, hidráulica…) -->
+              <li>Simulación mediante <strong>dinámica de fluidos computacional (CFD)</strong> aplicada a problemas ambientales.</li>
+              <li><strong>Modelado participativo de dinámica de sistemas</strong>, publicado en <em>Ecological Modelling</em>.</li>
+              <li>Desarrollo de <strong>herramientas propias</strong> que convierten la investigación en productos para el día a día.</li>
+              <li>Colaboración con equipos científicos internacionales.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
 
-            const words = ["Ingeniero de Montes.", "Especialista GIS.", "Desarrollador de Herramientas Geoespaciales."];
-            let i = 0;
-            let j = 0;
-            let currentWord = "";
-            let isDeleting = false;
-            const typedTextElement = document.getElementById("typed-text");
+    <!-- ===== HABILIDADES ===== -->
+    <section id="habilidades" class="section section--alt">
+      <div class="container">
+        <h2 class="section__title reveal"><span class="mono">04.</span> Habilidades técnicas</h2>
+        <div class="grid grid--4">
+          <article class="card reveal">
+            <h3><i data-lucide="leaf"></i> Ingeniería y medio ambiente</h3>
+            <ul class="tags">
+              <li>Planificación forestal sostenible</li><li>Evaluación de Impacto Ambiental</li><li>Restauración de ecosistemas</li>
+              <li>Recursos hídricos</li><li>Prevención de incendios</li><li>Ordenación del territorio</li>
+            </ul>
+          </article>
+          <article class="card reveal">
+            <h3><i data-lucide="map"></i> Tecnologías SIG</h3>
+            <ul class="tags">
+              <li>ArcGIS / ArcMap</li><li>QGIS</li><li>HEC-HMS</li><li>Geodatabases ESRI</li>
+              <li>Análisis espacial</li><li>Teledetección</li><li>Collect Earth</li><li>Google Earth Engine</li>
+            </ul>
+          </article>
+          <article class="card reveal">
+            <h3><i data-lucide="code-2"></i> Desarrollo y scripting</h3>
+            <ul class="tags">
+              <li>Python</li><li>Pandas</li><li>GeoPandas</li><li>ArcPy</li><li>PyQGIS</li><li>SQL</li>
+              <li>Automatización</li><li>Formación técnica</li>
+            </ul>
+          </article>
+          <article class="card reveal">
+            <h3><i data-lucide="users"></i> Liderazgo e I+D+i</h3>
+            <ul class="tags">
+              <li>Dirección de equipos</li><li>Gestión de proyectos</li><li>I+D+i</li><li>CFD</li>
+              <li>Dinámica de sistemas</li><li>Divulgación científica</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
 
-            function type() {
-                currentWord = words[i];
-                if (isDeleting) {
-                    typedTextElement.textContent = currentWord.substring(0, j - 1);
-                    j--;
-                    if (j == 0) {
-                        isDeleting = false;
-                        i++;
-                        if (i == words.length) {
-                            i = 0;
-                        }
-                    }
-                } else {
-                    typedTextElement.textContent = currentWord.substring(0, j + 1);
-                    j++;
-                    if (j == currentWord.length) {
-                        isDeleting = true;
-                        setTimeout(type, 2000);
-                        return;
-                    }
-                }
-                const typeSpeed = isDeleting ? 50 : 150;
-                setTimeout(type, typeSpeed);
-            }
-            type();
+    <!-- ===== PROYECTOS ===== -->
+    <section id="proyectos" class="section">
+      <div class="container">
+        <h2 class="section__title reveal"><span class="mono">05.</span> Proyectos destacados</h2>
+        <div class="filters reveal" role="group" aria-label="Filtrar proyectos">
+          <button class="filter active" data-filter="all" aria-pressed="true">Todos</button>
+          <button class="filter" data-filter="dev" aria-pressed="false">Desarrollo SIG</button>
+          <button class="filter" data-filter="ambiente" aria-pressed="false">Medio ambiente</button>
+          <button class="filter" data-filter="hidraulica" aria-pressed="false">Obras hidráulicas</button>
+          <button class="filter" data-filter="urbanismo" aria-pressed="false">Urbanismo</button>
+        </div>
+        <div class="grid grid--3" id="projectGrid"></div>
+      </div>
+    </section>
 
-            const revealOnScroll = () => {
-                const revealElements = document.querySelectorAll('.reveal');
-                const windowHeight = window.innerHeight;
-                revealElements.forEach(el => {
-                    const elementTop = el.getBoundingClientRect().top;
-                    if (elementTop < windowHeight - 100) {
-                        el.classList.add('active');
-                    }
-                });
-            };
-            window.addEventListener('scroll', revealOnScroll);
-            revealOnScroll();
+    <!-- ===== PUBLICACIONES ===== -->
+    <section id="publicaciones" class="section section--alt">
+      <div class="container">
+        <h2 class="section__title reveal"><span class="mono">06.</span> Publicaciones científicas</h2>
+        <article class="card pub reveal">
+          <div class="pub__icon"><i data-lucide="book-open"></i></div>
+          <div>
+            <p class="mono accent pub__meta">Ecological Modelling · 2025</p>
+            <h3>Balancing Act: A participatory system dynamics approach for Mar Menor’s sustainable future</h3>
+            <p>
+              Estudio que aplica un modelado participativo de dinámica de sistemas para explorar la interacción
+              entre factores ambientales, sociales y económicos en la cuenca del Mar Menor y proponer un camino
+              hacia su sostenibilidad.
+            </p>
+            <p class="pub__authors">Rashidian, M., Tartiu, V. E., Seifert-Dähnn, I., Nawrath, M., Barkved, L. J., Blanco-Gómez, P., &amp; <strong>Rodríguez-Vélez, M. S.</strong></p>
+            <a href="https://doi.org/10.1016/j.ecolmodel.2025.111268" target="_blank" rel="noopener" class="link">Ver publicación <i data-lucide="arrow-up-right"></i></a>
+          </div>
+        </article>
+      </div>
+    </section>
 
-            const projects = [
-                {
-                    category: "dev",
-                    title: "Plugin QGIS para Análisis de Cuencas",
-                    description: "Desarrollé un plugin con PyQGIS para automatizar la delimitación de cuencas y el cálculo de parámetros, reduciendo el tiempo de análisis en un 70% y estandarizando la metodología en la empresa.",
-                    tags: ["Python", "PyQGIS", "Hidrología"]
-                },
-                {
-                    category: "dev",
-                    title: "Scripts de Automatización con ArcPy",
-                    description: "Creé una serie de scripts en Python con ArcPy para automatizar la generación de cartografía temática y reportes, mejorando la productividad del equipo y asegurando la consistencia de los entregables.",
-                    tags: ["Python", "ArcPy", "Automatización"]
-                },
-                {
-                    category: "ambiente",
-                    title: "Monitoreo Forestal en Guatemala",
-                    description: "Implementé un sistema de monitoreo de incentivos forestales usando Collect Earth y GIS, proporcionando datos fiables para la certificación y contribuyendo a la gestión sostenible de los recursos.",
-                    tags: ["Teledetección", "GIS", "Cooperación"]
-                },
-                {
-                    category: "ambiente",
-                    title: "Planes de Prevención de Incendios",
-                    description: "Lideré el componente GIS para la elaboración de la cartografía de prevención de incendios de 26 municipios en Tarragona, garantizando la entrega de planos precisos que sirvieron de base para la aprobación de los planes.",
-                    tags: ["Prevención", "GIS", "Planificación"]
-                },
-                {
-                    category: "hidraulica",
-                    title: "Restauración DPH por Temporales (CHJ)",
-                    description: "Di apoyo ambiental en obras de emergencia para la restauración de daños en el Dominio Público Hidráulico, usando GIS para planificar acciones y asegurar una correcta ejecución ambiental.",
-                    tags: ["Restauración", "Obra Civil", "Hidráulica"]
-                },
-                 {
-                    category: "hidraulica",
-                    title: "Plan Maestro de Aguas Lluvias (El Salvador)",
-                    description: "Colaboré en la realización de la Evaluación Ambiental Estratégica para un plan maestro de gestión de aguas pluviales en San Salvador, identificando vulnerabilidades y proponiendo soluciones sostenibles con modelado GIS.",
-                    tags: ["EAE", "Urbanismo", "Hidrología"]
-                },
-                {
-                    category: "urbanismo",
-                    title: "Modificación PGOU 'Pulmón Verde'",
-                    description: "Aporté el análisis técnico GIS para la modificación de un Plan General que creaba un nuevo pulmón verde, realizando cartografía de riesgos y estudios de impacto paisajístico para su aprobación.",
-                    tags: ["Urbanismo", "Paisaje", "Planificación"]
-                },
-                {
-                    category: "urbanismo",
-                    title: "Evaluación Ambiental de Planes (EATE)",
-                    description: "Dirigí la Evaluación Ambiental y Territorial Estratégica para la modificación del plan general de Muro de Alcoy, definiendo un mapa de ruta para un crecimiento urbano alineado con la protección ambiental.",
-                    tags: ["EATE", "Legislación", "GIS"]
-                }
-            ];
+    <!-- ===== CONTACTO ===== -->
+    <section id="contacto" class="section contact">
+      <div class="container contact__inner reveal">
+        <p class="mono accent">07. ¿Cuál es el siguiente paso?</p>
+        <h2>Hablemos</h2>
+        <p>
+          Estoy abierto a nuevas oportunidades y colaboraciones. Si tienes un proyecto en mente o crees que
+          mi perfil encaja en tu equipo, escríbeme.
+        </p>
+        <div class="contact__links">
+          <!-- TODO: pon tu email real -->
+          <a href="mailto:tuemail@example.com" class="btn btn--primary"><i data-lucide="mail"></i> Enviar un mensaje</a>
+          <a href="https://www.linkedin.com/in/marckbyn-rodr%C3%ADguez-v%C3%A9lez-68544bb7/" target="_blank" rel="noopener" class="btn btn--outline"><svg class="lucide" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg> LinkedIn</a>
+          <a href="Marckbyn Stephan Rodríguez Vélez_CV.docx" download class="btn btn--outline"><i data-lucide="download"></i> Descargar CV</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-            const projectGrid = document.getElementById('project-grid');
-            const filterBtns = document.querySelectorAll('.project-filter-btn');
+  <footer class="footer">
+    <p>© <span id="year"></span> Marckbyn Rodríguez Vélez · Diseñado y construido por mí 😎</p>
+  </footer>
 
-            const displayProjects = (filter) => {
-                projectGrid.innerHTML = '';
-                const filteredProjects = projects.filter(p => filter === 'all' || p.category === filter);
-
-                filteredProjects.forEach(project => {
-                    const card = document.createElement('div');
-                    card.className = 'project-card glass-effect rounded-lg p-6 flex flex-col justify-between reveal';
-                    card.innerHTML = `
-                        <div>
-                            <div class="flex justify-between items-center mb-4">
-                                <i data-lucide="folder-git-2" class="text-teal-300 w-10 h-10"></i>
-                                <div class="flex space-x-2">
-                                    <a href="#" class="text-slate-400 hover:text-teal-300"><i data-lucide="github" class="w-5 h-5"></i></a>
-                                    <a href="#" class="text-slate-400 hover:text-teal-300"><i data-lucide="external-link" class="w-5 h-5"></i></a>
-                                </div>
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-200 mb-2 hover:text-teal-300 transition-colors cursor-pointer">${project.title}</h3>
-                            <p class="text-sm text-slate-400">${project.description}</p>
-                        </div>
-                        <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-500">
-                            ${project.tags.map(tag => `<span>${tag}</span>`).join('')}
-                        </div>
-                    `;
-                    projectGrid.appendChild(card);
-                });
-                lucide.createIcons();
-                revealOnScroll();
-            };
-
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    displayProjects(btn.dataset.filter);
-                });
-            });
-            
-            displayProjects('all');
-
-            const style = document.createElement('style');
-            style.innerHTML = `
-            .project-filter-btn {
-                background-color: transparent;
-                color: #64ffda;
-                border: 1px solid #64ffda;
-                padding: 0.5rem 1rem;
-                border-radius: 9999px;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                font-size: 0.875rem;
-            }
-            .project-filter-btn:hover {
-                background-color: rgba(100, 255, 218, 0.1);
-            }
-            .project-filter-btn.active {
-                background-color: rgba(100, 255, 218, 0.1);
-                font-weight: 600;
-            }
-            `;
-            document.head.appendChild(style);
-        });
-    </script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@1.48.0/dist/umd/lucide.min.js"></script>
+  <script src="script.js"></script>
+  <script src="forest.js"></script>
 </body>
-
 </html>
-
