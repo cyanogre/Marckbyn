@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marckbyn · Currículum</title>
+  <meta name="description" content="Currículum y portfolio de Marckbyn.">
+  <meta property="og:title" content="Marckbyn · Currículum">
+  <meta property="og:description" content="Currículum y portfolio de Marckbyn.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%234f46e5'/><text x='50' y='68' font-size='56' text-anchor='middle' fill='white' font-family='Arial' font-weight='700'>M</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Saltar al contenido</a>
+
+  <header class="nav">
+    <div class="container nav__inner">
+      <a href="#inicio" class="nav__logo">Marckbyn<span>.</span></a>
+      <nav aria-label="Principal">
+        <ul class="nav__links">
+          <li><a href="#sobre-mi">Sobre mí</a></li>
+          <li><a href="#experiencia">Experiencia</a></li>
+          <li><a href="#habilidades">Habilidades</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema claro/oscuro">
+        <span class="icon-sun">☀️</span><span class="icon-moon">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="inicio">
+      <div class="container hero__inner">
+        <div class="hero__text reveal">
+          <p class="eyebrow">Hola, soy</p>
+          <h1>Marckbyn</h1>
+          <!-- TODO: cambia tu titular profesional -->
+          <p class="hero__role">Desarrollador · Creativo · Siempre aprendiendo</p>
+          <p class="hero__lead">
+            <!-- TODO: 1–2 frases con lo que haces y qué te diferencia -->
+            Construyo proyectos web, juegos y herramientas que combinan código y creatividad.
+            Me motivan los retos nuevos y crear cosas útiles (y divertidas).
+          </p>
+          <div class="hero__cta">
+            <a href="#contacto" class="btn btn--primary">Hablemos</a>
+            <a href="#proyectos" class="btn btn--ghost">Ver proyectos</a>
+            <button class="btn btn--ghost" onclick="window.print()">Descargar PDF</button>
+          </div>
+        </div>
+        <div class="hero__avatar reveal" aria-hidden="true">
+          <!-- TODO: sustituye por <img src="foto.jpg" alt="Foto de Marckbyn"> -->
+          <div class="avatar">M</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SOBRE MÍ ===== -->
+    <section id="sobre-mi" class="section">
+      <div class="container">
+        <h2 class="section__title reveal">Sobre mí</h2>
+        <div class="about reveal">
+          <div>
+            <!-- TODO: tu historia en 2–3 párrafos cortos -->
+            <p>
+              Soy una persona curiosa a la que le gusta entender cómo funcionan las cosas y construirlas.
+              He trabajado en proyectos personales que van desde webs hasta novelas visuales y traductores.
+            </p>
+            <p>
+              Busco oportunidades donde pueda aportar, seguir creciendo y trabajar en equipo
+              en productos con impacto real.
+            </p>
+          </div>
+          <ul class="facts">
+            <li><strong>📍 Ubicación</strong><span>Tu ciudad, País</span></li>
+            <li><strong>💼 Disponibilidad</strong><span>Inmediata</span></li>
+            <li><strong>🗣️ Idiomas</strong><span>Español (nativo) · Inglés (B2)</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EXPERIENCIA Y FORMACIÓN ===== -->
+    <section id="experiencia" class="section section--alt">
+      <div class="container">
+        <h2 class="section__title reveal">Experiencia y formación</h2>
+        <div class="columns">
+          <div>
+            <h3 class="col__title">💼 Experiencia</h3>
+            <ol class="timeline">
+              <!-- TODO: añade tus puestos, del más reciente al más antiguo -->
+              <li class="reveal">
+                <span class="timeline__date">2024 — Actualidad</span>
+                <h4>Puesto <span>· Empresa</span></h4>
+                <p>Describe un logro medible: «Reduje el tiempo de carga un 40 %» funciona mejor que «hice tareas de web».</p>
+              </li>
+              <li class="reveal">
+                <span class="timeline__date">2022 — 2024</span>
+                <h4>Puesto <span>· Empresa</span></h4>
+                <p>Responsabilidades clave y resultados. Usa verbos de acción: diseñé, lideré, automaticé…</p>
+              </li>
+            </ol>
+          </div>
+          <div>
+            <h3 class="col__title">🎓 Formación</h3>
+            <ol class="timeline">
+              <li class="reveal">
+                <span class="timeline__date">20XX — 20XX</span>
+                <h4>Título / Grado <span>· Centro</span></h4>
+                <p>Especialidad, proyecto final o nota destacada.</p>
+              </li>
+              <li class="reveal">
+                <span class="timeline__date">20XX</span>
+                <h4>Curso o certificación <span>· Plataforma</span></h4>
+                <p>Qué aprendiste y dónde lo has aplicado.</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HABILIDADES ===== -->
+    <section id="habilidades" class="section">
+      <div class="container">
+        <h2 class="section__title reveal">Habilidades</h2>
+        <div class="skills">
+          <!-- TODO: ajusta a tus habilidades reales -->
+          <div class="card reveal">
+            <h3>💻 Técnicas</h3>
+            <ul class="tags">
+              <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Next.js</li><li>Git / GitHub</li><li>Python</li>
+            </ul>
+          </div>
+          <div class="card reveal">
+            <h3>🎨 Creativas</h3>
+            <ul class="tags">
+              <li>Diseño de juegos</li><li>Narrativa</li><li>UI / UX</li><li>Ilustración</li>
+            </ul>
+          </div>
+          <div class="card reveal">
+            <h3>🤝 Personales</h3>
+            <ul class="tags">
+              <li>Trabajo en equipo</li><li>Autonomía</li><li>Resolución de problemas</li><li>Comunicación</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROYECTOS ===== -->
+    <section id="proyectos" class="section section--alt">
+      <div class="container">
+        <h2 class="section__title reveal">Proyectos</h2>
+        <div class="projects">
+          <!-- TODO: revisa las descripciones y añade capturas si quieres -->
+          <article class="project reveal">
+            <div class="project__emoji">🔮</div>
+            <h3>Tarot para ogros</h3>
+            <p>Proyecto de tarot con un toque de humor. Cuenta qué hace y qué tecnologías usaste.</p>
+            <a href="https://github.com/cyanogre/Tarot-para-ogros" target="_blank" rel="noopener">Ver en GitHub →</a>
+          </article>
+          <article class="project reveal">
+            <div class="project__emoji">🎮</div>
+            <h3>VN Game</h3>
+            <p>Novela visual. Explica la historia, el motor usado y tu papel en el desarrollo.</p>
+            <a href="https://github.com/cyanogre/VN_game" target="_blank" rel="noopener">Ver en GitHub →</a>
+          </article>
+          <article class="project reveal">
+            <div class="project__emoji">🌐</div>
+            <h3>Traductor</h3>
+            <p>Herramienta de traducción. Destaca el problema que resuelve y cómo lo hace.</p>
+            <a href="https://github.com/cyanogre/Traductor" target="_blank" rel="noopener">Ver en GitHub →</a>
+          </article>
+          <article class="project reveal">
+            <div class="project__emoji">📝</div>
+            <h3>Blog con Next.js</h3>
+            <p>Blog basado en Next.js y Netlify. Menciona qué personalizaste.</p>
+            <a href="https://github.com/cyanogre/nextjs-netlify-blog-template" target="_blank" rel="noopener">Ver en GitHub →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACTO ===== -->
+    <section id="contacto" class="section contact">
+      <div class="container contact__inner reveal">
+        <h2>¿Trabajamos juntos?</h2>
+        <p>Estoy abierto a nuevas oportunidades y colaboraciones. Escríbeme y te respondo pronto.</p>
+        <div class="contact__links">
+          <!-- TODO: pon tu email y enlaces reales -->
+          <a class="btn btn--primary" href="mailto:tu-email@ejemplo.com">✉️ Email</a>
+          <a class="btn btn--ghost" href="https://github.com/cyanogre" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn btn--ghost" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© <span id="year"></span> Marckbyn · Hecho con cariño</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
