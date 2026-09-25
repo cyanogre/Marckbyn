@@ -106,7 +106,7 @@ burger.addEventListener("click", () => setMenu(!navLinks.classList.contains("ope
 navLinks.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setMenu(false)));
 
 // ---------- Texto que se escribe solo ----------
-const words = ["Ingeniero de Montes.", "Especialista SIG.", "Desarrollador de herramientas geoespaciales."];
+const words = ["Ingeniero de Montes.", "Especialista SIG.", "Director de equipos técnicos.", "Investigador en I+D+i.", "Desarrollador geoespacial."];
 const typed = document.getElementById("typed");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 if (reduceMotion) {
@@ -160,6 +160,18 @@ window.addEventListener("scroll", () => {
   sections.forEach((sec, i) => {
     links[i].classList.toggle("active", sec.offsetTop <= y && sec.offsetTop + sec.offsetHeight > y);
   });
+}, { passive: true });
+
+// ---------- Visor SIG: coordenadas que siguen al ratón ----------
+// Zona de referencia: Sierra de Aitana / embalse de Guadalest (Alicante)
+const hud = { lat: document.getElementById("hudLat"), lon: document.getElementById("hudLon"), z: document.getElementById("hudZ") };
+const heroEl = document.getElementById("inicio");
+heroEl.addEventListener("pointermove", (e) => {
+  const r = heroEl.getBoundingClientRect();
+  const fx = (e.clientX - r.left) / r.width, fy = (e.clientY - r.top) / r.height;
+  hud.lat.textContent = (38.76 - fy * 0.07).toFixed(4) + "° N";
+  hud.lon.textContent = (0.30 - fx * 0.11).toFixed(4) + "° W";
+  hud.z.textContent = Math.round(1558 - fy * 900 + Math.sin(fx * 12) * 60).toLocaleString("es-ES") + " m";
 }, { passive: true });
 
 document.getElementById("year").textContent = new Date().getFullYear();
